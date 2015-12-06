@@ -1,0 +1,5 @@
+
+sh_inicio = /tmp/inicio.sh
+sh_fim = /tmp/fim.sh
+
+
