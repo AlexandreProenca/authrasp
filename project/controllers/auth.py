@@ -1,28 +1,11 @@
 # -*- coding: utf-8 -*-
+import time
 from project import app
-from bottle import template, request
+from bottle import template, request, redirect
 from project.utils.cpf_check import CPF
-
-import sqlite3
-
-VALIDO = "113.451.253-80"
-INVALIDO = "31354110274"
-
-valido = CPF(VALIDO)
-invalido = CPF(INVALIDO)
-
-assert valido.isValid()
-assert invalido.isValid()
-
-@app.route('/users')
-def show_users():
-    db = sqlite3.connect('users.db')
-    c = db.cursor()
-    c.execute("SELECT email,password,cpf FROM users")
-    data = c.fetchall()
-    c.close()
-    output = template('show_users', rows=data)
-    return output
+import csv
+from subprocess import call
+from project.sinc.sinc import  Sinc
 
 @app.route('/', method='GET')
 def index():
@@ -31,15 +14,28 @@ def index():
 
 @app.route('/login', method=['POST'])
 def login():
-    db = sqlite3.connect('users.db')
-    c = db.cursor()
+    nome = request.POST['nome']
     email = request.POST['email']
-    password = request.POST['password']
     cpf = request.POST['cpf']
     valido = CPF(cpf)
+    client_ip = request.environ.get('REMOTE_ADDR')
+    print ['Your IP is: {}\n'.format(client_ip)]
 
     if valido.isValid():
-        c.execute('INSERT INTO users (email,password,cpf) VALUES (?,?,?)',(email,password,cpf))
-        db.commit()
+        Sinc.insert({'delta': 0, 'info': 'imediato', 'path': './start.sh' })
+        Sinc.insert({'delta': 30, 'info': 'sh de 30 segundos', 'path': './stop.sh' })
 
-    return template('index', message='')
+        f = open('users.csv', 'a')
+        try:
+            writer = csv.writer(f)
+            writer.writerow((nome, email, cpf, client_ip))
+
+        except:
+            print("Não foi possivel escrever no arquivo")
+        finally:
+            f.close()
+
+    else:
+        return template('index', message='CPF INVÁLIDO')
+    return template('index', message=' cadastro oks')
+
