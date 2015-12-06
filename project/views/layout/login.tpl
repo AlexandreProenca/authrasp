@@ -10,16 +10,18 @@
 
 	<fieldset class="boxBody">
 
-	  <label>Username</label>
-	  <input name="email" type="text" tabindex="1" placeholder="Digite seu nome de usuário" required>
+	  <label>Nome</label>
+	  <input name="nome" type="text" tabindex="1" placeholder="Digite seu nome de usuário" required>
 
-	  <label>Password</label>
-	  <input name="password" type="password" tabindex="1" placeholder="Digite sua senha" required required>
+	  <label>Email</label>
+	  <input name="email" type="text" tabindex="1" placeholder="Digite sua email" required required>
 
 	  <label>CPF</label>
 	  <input name="cpf" type="text" tabindex="1" placeholder="Digite seu CPF" required required>
 
       <input type="submit" class="btnLogin" value="Login" tabindex="4">
+      </br>
+      <h1>{{ message }}</h1>
 
 	</fieldset>
 
