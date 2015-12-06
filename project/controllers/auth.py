@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-
 from project import app
 from bottle import template, request
+from project.utils.cpf_check import CPF
+
 import sqlite3
+
+VALIDO = "113.451.253-80"
+INVALIDO = "31354110274"
+
+valido = CPF(VALIDO)
+invalido = CPF(INVALIDO)
+
+assert valido.isValid()
+assert invalido.isValid()
 
 @app.route('/users')
 def show_users():
@@ -25,7 +36,10 @@ def login():
     email = request.POST['email']
     password = request.POST['password']
     cpf = request.POST['cpf']
-    c.execute('INSERT INTO users (email,password,cpf) VALUES (?,?,?)',(email,password,cpf))
-    db.commit()
+    valido = CPF(cpf)
+
+    if valido.isValid():
+        c.execute('INSERT INTO users (email,password,cpf) VALUES (?,?,?)',(email,password,cpf))
+        db.commit()
 
     return template('index', message='')
