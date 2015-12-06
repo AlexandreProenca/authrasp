@@ -1,5 +1,8 @@
 
-sh_inicio = /tmp/inicio.sh
-sh_fim = /tmp/fim.sh
+[config]
 
+SH_START  = /tmp/inicio.sh
+SH_STOP = /tmp/fim.sh
+URL_REDIRECT = "www.google.com.br"
+EMAIL = "contato@receber.com.br"
 
