@@ -49,10 +49,10 @@ class Sinc():
     def process():
         for el in Sinc.tasks:
             if Sinc.seconds >= (el['start'] + el['delta']):
-                print 'el:', el, Sinc.seconds
+                # print 'el:', el, Sinc.seconds
                 Sinc.tasks.remove(el)
                 return_code = subprocess.call(el['path'], shell=True)
-                print return_code
+                #print return_code
 
 
 if __name__ == "__main__":
