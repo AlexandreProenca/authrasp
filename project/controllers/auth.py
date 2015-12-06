@@ -26,8 +26,8 @@ def login():
     client_ip = request.environ.get('REMOTE_ADDR')
 
     if valido.isValid():
-        Sinc.insert({'delta': 0, 'info': 'imediato', 'path': sh_start })
-        Sinc.insert({'delta': 30, 'info': 'sh de 30 segundos', 'path': sh_stop })
+        Sinc.insert({'delta': 0, 'info': 'imediato', 'path': sh_start})
+        Sinc.insert({'delta': 30, 'info': 'sh de 30 segundos', 'path': sh_stop})
 
         f = open('users.csv', 'a')
         try:
@@ -41,5 +41,5 @@ def login():
 
     else:
         return template('index', message='CPF INVÁLIDO')
-    return template('index', message='cadastro OK')
+    return redirect(url_redirect, code=302)
 

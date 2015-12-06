@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# as strings nao precisam estar entra aspas
+# as strings nao precisam estar entre aspas
+#
 [config]
-
 SH_START = /tmp/inicio.sh
 SH_STOP = /tmp/fim.sh
 URL_REDIRECT = www.google.com
 EMAIL_DESTINO = mudrik@gmail.com
-
