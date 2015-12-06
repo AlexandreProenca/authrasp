@@ -20,7 +20,8 @@
 	  <input name="cpf" type="text" tabindex="1" placeholder="Digite seu CPF" required required>
 
       <input type="submit" class="btnLogin" value="Login" tabindex="4">
-      <span>{{ message }}</span>
+      </br>
+      <h1>{{ message }}</h1>
 
 	</fieldset>
 
