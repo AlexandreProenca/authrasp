@@ -2,8 +2,8 @@
    <head>
 <title>Simple Login Form</title>
 <meta charset="UTF-8" />
-<link rel="stylesheet" typ="text/css" href="/css/reset.css">
-<link rel="stylesheet" type="text/css" href="/css/structure.css">
+<link rel="stylesheet" typ="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/structure.css">
 </head>
 <body>
 <form class="box login" action="/login" method="post">
