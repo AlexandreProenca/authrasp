@@ -2,7 +2,7 @@
 # as strings nao precisam estar entre aspas
 #
 [config]
-SH_START = /tmp/inicio.sh
-SH_STOP = /tmp/fim.sh
-URL_REDIRECT = www.google.com
+SH_START = project/script/start.sh
+SH_STOP = project/script/stop.sh
+URL_REDIRECT = http://www.google.com
 EMAIL_DESTINO = mudrik@gmail.com
