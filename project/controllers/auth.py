@@ -2,6 +2,8 @@
 from project import app
 from bottle import template, request
 from project.utils.cpf_check import CPF
+import csv
+import sys
 
 import sqlite3
 
@@ -33,13 +35,24 @@ def index():
 def login():
     db = sqlite3.connect('users.db')
     c = db.cursor()
+    nome = request.POST['nome']
     email = request.POST['email']
-    password = request.POST['password']
     cpf = request.POST['cpf']
     valido = CPF(cpf)
 
     if valido.isValid():
-        c.execute('INSERT INTO users (email,password,cpf) VALUES (?,?,?)',(email,password,cpf))
-        db.commit()
+        f = open('users.csv', 'wt')
+        try:
+            writer = csv.writer(f)
+            writer.writerow( ('nome', 'cpf', 'email') )
+            writer.writerow(nome, email, cpf)
+        finally:
+            f.close()
 
+        print open('users.csv', 'rt').read()
+
+        # c.execute('INSERT INTO users (nome, email, cpf) VALUES (?,?,?)',(nome, email, cpf))
+        # db.commit()
+    else:
+        return template('index', message='CPF INVÁLIDO')
     return template('index', message='')
