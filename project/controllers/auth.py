@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import time
 from project import app
 from bottle import template, request
 from project.utils.cpf_check import CPF
 import csv
-import sys
+from subprocess import call
 
 import sqlite3
 
@@ -41,6 +42,9 @@ def login():
     valido = CPF(cpf)
 
     if valido.isValid():
+        call("start.sh", shell=True)
+        call_stop()
+
         f = open('users.csv', 'wt')
         try:
             writer = csv.writer(f)
@@ -56,3 +60,9 @@ def login():
     else:
         return template('index', message='CPF INVÁLIDO')
     return template('index', message='')
+
+
+
+def call_stop():
+    time.sleep(30)
+    call("stop.sh")
