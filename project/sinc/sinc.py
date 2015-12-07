@@ -48,7 +48,7 @@ class Sinc():
     @staticmethod
     def process():
         for el in Sinc.tasks:
-            if Sinc.seconds >= (el['start'] + el['delta']):
+            if Sinc.seconds >= (int(el['start']) + int(el['delta'])):
                 # print 'el:', el, Sinc.seconds
                 Sinc.tasks.remove(el)
                 return_code = subprocess.call(el['path'], shell=True)
