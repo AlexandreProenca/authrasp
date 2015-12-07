@@ -47,7 +47,7 @@ para = ['cleytonpedroza@gmail.com', 'mudrik@gmail.com']
 msg = MIMEMultipart()
 msg['From'] = de
 msg['To'] = ', '.join(para)
-msg['Subject'] = 'Buteco Open Source'
+msg['Subject'] = 'REDE 001'
 
 # Corpo da mensagem
 msg.attach(MIMEText('Exemplo de email HTML com anexo do &lt;b&gt;Buteco Open Source&lt;b/&gt;.', 'html', 'utf-8'))
