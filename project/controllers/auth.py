@@ -11,6 +11,7 @@ config.read('config.txt')
 sh_start = config.get('config', 'SH_START')
 sh_stop = config.get('config', 'SH_STOP')
 url_redirect = config.get('config', 'URL_REDIRECT')
+tempo = config.get('config', 'TEMPO_CONEXAO')
 
 @app.route('/', method='GET')
 def index():
@@ -27,7 +28,7 @@ def login():
 
     if valido.isValid():
         Sinc.insert({'delta': 0, 'info': 'imediato', 'path': sh_start+" "+client_ip})
-        Sinc.insert({'delta': 30, 'info': 'sh de 30 segundos', 'path': sh_stop+" "+client_ip})
+        Sinc.insert({'delta': tempo, 'info': 'sh de 30 segundos', 'path': sh_stop+" "+client_ip})
 
         f = open('users.csv', 'a')
         try:

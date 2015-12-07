@@ -6,3 +6,5 @@ SH_START = project/script/start.sh
 SH_STOP = project/script/stop.sh
 URL_REDIRECT = http://www.google.com
 EMAIL_DESTINO = mudrik@gmail.com
+TEMPO_CONEXAO = 30
+
