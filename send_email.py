@@ -53,7 +53,7 @@ msg['Subject'] = 'REDE 001'
 msg.attach(MIMEText('Exemplo de email HTML com anexo do &lt;b&gt;Buteco Open Source&lt;b/&gt;.', 'html', 'utf-8'))
 
 # Arquivos anexos.
-adiciona_anexo(msg, './users.csv')
+adiciona_anexo(msg, 'users.csv')
 
 raw = msg.as_string()
 
